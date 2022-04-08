@@ -386,128 +386,168 @@ using namespace std;
 //    doubleLinklist = insertInOrder(doubleLinklist, -1);
 //    doubleLinklist->print();
 //}
+//#include <iostream>
+//using namespace std;
+//class BST
+//{
+//public:
+//    int data;
+//    BST *l;
+//    BST*r;
+//    BST(int data)
+//    {
+//        this->data = data;
+//        l = NULL;
+//        r = NULL;
+//    }
+//    void insertNode(int data)
+//    {
+//        if (data > this->data)
+//            l = inserthelper(l, data);
+//        else
+//            r = inserthelper(r, data);
+//    }
+//    BST*inserthelper(BST * node, int data)
+//    {
+//        if (node == NULL)
+//            return  new BST(data);
+//        else
+//        {
+//            if (data > node->data)
+//            {
+//                node->l = inserthelper(node->l, data);
+//            }
+//            else
+//            {
+//                node->r = inserthelper(node->r, data);
+//            }
+//            return node;
+//        }
+//    }
+//    void printInorder()
+//    {
+//        //left -> parent node -> right
+//        //cout << this->data << " " ;
+//        if (r != NULL)
+//            printInorderhelper(r);
+//
+//        cout << this->data << " " ;
+//        if (l != NULL)
+//            printInorderhelper(l);
+//        //cout << this->data << " " ;
+//
+//
+//
+//
+//
+//    }
+//    void printInorderhelper(BST * node)
+//    {
+//        if (node != NULL)
+//        {
+//
+//            //cout << node->data << " " ;
+//            if (node->r != NULL)
+//            {
+//                printInorderhelper(node->r);
+//            }
+//            cout << node->data << " " ;
+//            if (node->l != NULL)
+//            {
+//                printInorderhelper(node->l);
+//            }
+//            //cout << node->data << " " ;
+//
+//
+//
+//
+//        }
+//    }
+//
+//    void printPreOrder()
+//    {
+//        // left -> parent node -> right
+//        cout << this->data << " " ;;
+//        if (l != NULL)
+//        printInorderhelper(l);
+//        if (r != NULL)
+//        printInorderhelper(r);
+//
+//    }
+//    void printPreorderhelper(BST * node)
+//    {
+//        if (node != NULL)
+//        {
+//
+//            cout << node->data << " " ;
+//            if (node->l != NULL)
+//            {
+//                printInorderhelper(node->l);
+//            }
+//            if (node->r != NULL)
+//                        {
+//                            printInorderhelper(node->r);
+//                        }
+//
+//        }
+//    }
+//
+//};
+//
+//int main()
+//{
+//    // 10 15 25 30 42 65 70 75 100
+//    BST * tree = new BST(42);
+//    tree->insertNode(25);
+//    tree->insertNode(75);
+//    tree->insertNode(10);
+//    tree->insertNode(30);
+//    tree->insertNode(15);
+//    tree->insertNode(65);
+//    tree->insertNode(100);
+//    tree->insertNode(70);
+//    tree->printInorder();
+//    //ree->printPreOrder();
+//    //tree->printPreOrder();
+//}
+//
+
+// lab 11
 #include <iostream>
 using namespace std;
-class BST
+#include <vector>
+class Person
 {
+protected:
+    string name;
 public:
-    int data;
-    BST *l;
-    BST*r;
-    BST(int data)
+    string getInfo()
     {
-        this->data = data;
-        l = NULL;
-        r = NULL;
+        return name;
     }
-    void insertNode(int data)
-    {
-        if (data > this->data)
-            l = inserthelper(l, data);
-        else
-            r = inserthelper(r, data);
-    }
-    BST*inserthelper(BST * node, int data)
-    {
-        if (node == NULL)
-            return  new BST(data);
-        else
-        {
-            if (data > node->data)
-            {
-                node->l = inserthelper(node->l, data);
-            }
-            else
-            {
-                node->r = inserthelper(node->r, data);
-            }
-            return node;
-        }
-    }
-    void printInorder()
-    {
-        //left -> parent node -> right
-        //cout << this->data << " " ;
-        if (r != NULL)
-            printInorderhelper(r);
-        
-        cout << this->data << " " ;
-        if (l != NULL)
-            printInorderhelper(l);
-        //cout << this->data << " " ;
-        
-        
-        
-        
-        
-    }
-    void printInorderhelper(BST * node)
-    {
-        if (node != NULL)
-        {
-            
-            //cout << node->data << " " ;
-            if (node->r != NULL)
-            {
-                printInorderhelper(node->r);
-            }
-            cout << node->data << " " ;
-            if (node->l != NULL)
-            {
-                printInorderhelper(node->l);
-            }
-            //cout << node->data << " " ;
-            
-            
-
-            
-        }
-    }
-    
-    void printPreOrder()
-    {
-        // left -> parent node -> right
-        cout << this->data << " " ;;
-        if (l != NULL)
-        printInorderhelper(l);
-        if (r != NULL)
-        printInorderhelper(r);
-        
-    }
-    void printPreorderhelper(BST * node)
-    {
-        if (node != NULL)
-        {
-            
-            cout << node->data << " " ;
-            if (node->l != NULL)
-            {
-                printInorderhelper(node->l);
-            }
-            if (node->r != NULL)
-                        {
-                            printInorderhelper(node->r);
-                        }
-            
-        }
-    }
-    
 };
 
+class Student: protected Person
+{
+    
+protected:
+    void editName(string name)
+    {
+        this->name = name;
+    }
+};
+
+class Teacher: protected Person
+{
+private:
+    vector<Student> studentList; 
+protected:
+    void editName(string name)
+    {
+        this->name = name;
+    }
+};
 int main()
 {
-    // 10 15 25 30 42 65 70 75 100
-    BST * tree = new BST(42);
-    tree->insertNode(25);
-    tree->insertNode(75);
-    tree->insertNode(10);
-    tree->insertNode(30);
-    tree->insertNode(15);
-    tree->insertNode(65);
-    tree->insertNode(100);
-    tree->insertNode(70);
-    tree->printInorder();
-    //ree->printPreOrder();
-    //tree->printPreOrder();
+    
 }
-
